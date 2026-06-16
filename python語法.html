@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>python語法解說網站</title>
+    <meta>
+
+    <style>
+        body{
+            background: #001;
+        }
+        #title{
+            color: white; /*白色字皆用title來做代替*/
+        }
+    </style>
+    <style>
+        #c11{
+            font-size: 180%;
+            height: 80px;
+            width: 150px;
+            color: blueviolet;
+            border: 6px plum double;
+            justify-content: center;
+        }
+    </style>
+    <style>/*網頁最上方山田圖片*/
+        .sanimg{
+            width: 300px;
+        }
+    </style>
+    <style>/*載入動畫*/
+        .curtain{
+            position: fixed;/*固定*/
+            inset: 0;/*四周貼滿*/
+            background-color: #b3a3ba;
+            display: flex;
+            justify-content: center;/*水平文字致中*/
+            align-items:center;/*垂直致中*/
+            z-index: 9999;/*圖層*/
+            transform: translateY(0);
+            /*transform 是用來移動、旋轉、縮放元素的屬性。
+            translateY 是指垂直方向移動（Y 軸 = 上下）。
+            (0) 代表不移動，待在原本的位置。*/
+            opacity:1 ;
+            transition: transform 1.5s ease-in-out ,opacity 1.5s ease-in-out;/*transition 是讓屬性改變時不要瞬間跳，而是慢慢變化。*/
+        }
+
+        /*布幕往上*/
+        .curtain.hide {
+            transform: translateY(-100%);/* 往上移動整個螢幕的高度 */
+            opacity: 0.05;
+        }
+
+        /*載入中文字*/
+        .curtain-text {
+            color: #001;
+            font-size: 20px;
+            letter-spacing: 5px;/*文字間格*/
+        }
+    </style>
+    <style>
+    .tooltip-wrap {
+    position: relative;
+    display: inline-block;
+    
+    }
+
+    .syntax-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 180ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .syntax-btn:hover,
+    .syntax-btn:focus-visible {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
+    }
+
+    .tooltip-box {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 12px);
+    transform: translateX(-50%) translateY(8px);
+    min-width: 220px;
+    max-width: 280px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #111827;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10;
+    }
+
+    .tooltip-box::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: #111827 transparent transparent transparent;
+    }
+
+    .tooltip-wrap:hover .tooltip-box,
+    .tooltip-wrap:focus-within .tooltip-box {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    }
+    </style>
+    <style>
+    .in{/*顯示程式碼的區域*/
+        border-radius: 7px;
+    }
+    </style>
+    <style>
+    .big {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: nowrap;
+        padding: 20px 0;
+    }
+
+    .tooltip-wrap {
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+    }
+    </style>
+    <style>/*按鈕畫面的程式碼*/
+        code { 
+            background-color: #010101f8; 
+            border-radius: 3px; 
+            font-family: courier, monospace; 
+            padding: 0 3px; 
+        }
+    </style>
+</head>
+<body>
+    <img src="san.jpg" class="sanimg">
+    <h1><p id="title">python語法解說網站</p></h1>
+    <div class="first py">
+        <p id="title">python Python 是一種廣泛使用的程式設計語言，
+            用於 Web 應用程式、軟體開發、資料科學與機器學習 (ML)。
+            開發人員使用 Python 在於效率高又容易學習，
+            並且可以在許多不同的平台上執行。Python 軟體可以免費下載，
+            與所有類型的系統完美整合，還可以加快開發速度。
+        </p>
+    </div>
+    <div class="big">
+        <div class="tooltip-wrap">
+            <button class="syntax-btn" aria-describedby="tip-if">
+                print
+            </button>
+            <div class="tooltip-box" id="tip-if" role="tooltip">
+                print() 是 Python 的內建函數，用於將指定的內
+                容輸出到控制台（標準輸出設備）。 它可以輸出各種類
+                型的數據，包括字串、數字、列表、字典等。
+                <div class="in" style="background-color: #765285;"><p><code> &nbsp;print("Hello, Python!")</code></p></div>
+
+            </div>
+        </div>
+        <div class="tooltip-wrap">
+            <button class="syntax-btn" aria-describedby="tip-if">
+                input()
+            </button>
+            <div class="tooltip-box" id="tip-if" role="tooltip">
+            input 是 HTML 表單元件裡最重要也最特別的元素，
+            主要的作用為「與使用者互動，讓使用者輸入資料」，
+            而輸入的方式又可分為直接打字輸入、點擊輸入或是下拉選單選擇...等，input 可以
+            根據類型 type 屬性的設定，轉換成不同的輸入型態 ( 例如輸入框、下拉選單、日期選單、按鈕...等 )。 
+            <div class="in" style="background-color: #765285;"><p><code> &nbsp;input("請輸入內容")<br>&nbsp;input type="text"</code></p></div>
+
+            </div>
+        </div>
+        <div class="tooltip-wrap">
+            <button class="syntax-btn" aria-describedby="tip-if">
+                if...else
+            </button>
+            <div class="tooltip-box" id="tip-if" role="tooltip">
+                if...else 是程式的條件判斷語法。當「如果」條件成立時，電腦會執行特定的程式碼；「否則」條件不成立時，則執行另一段預設程式碼。透過它，能讓電腦像人類一樣根據不同狀況做出自動應變與抉擇。
+                <div class="in" style="background-color: #765285;"><p><code>score = 75<br>if score >= 60:<br>&nbsp; &nbsp;&nbsp;print("及格！恭喜通過。")
+                    <br>else:<br>&nbsp;&nbsp;&nbsp;print("不及格，需要補考。")</code></p></div>
+            </div>
+        </div>
+        <div class="tooltip-wrap">
+            <button class="syntax-btn" aria-describedby="tip-if">
+                list
+            </button>
+            <div class="tooltip-box" id="tip-if" role="tooltip">
+            list 回圈，最常見就是用 for 依序把清單裡的每個元素拿出來處理，語法像 for x in list_name:，
+            例如 fruits = ['apple', 'banana', 'orange']，for fruit in fruits: 就會把每個水果一個一個印出來。   
+            <div class="in" style="background-color: #765285;"><p><code>fruits = ['apple', 'banana', 'orange']
+            <br>for fruit in fruits:
+            <br>&nbsp;&nbsp;&nbsp;print(fruit)</code></p></div>
+            </div>
+        </div>
+        <div class="tooltip-wrap">
+            <button class="syntax-btn" aria-describedby="tip-if">
+                range
+            </button>
+            <div class="tooltip-box" id="tip-if" role="tooltip">
+            range() 是 Python 裡用來產生一串整數的工具，最常搭配 for 迴圈使用來控制執行次數；基本寫法有 range(stop)、range(start, stop)、
+            range(start, stop, step)，而且 stop 不會被包含。例如 for i in r
+            ange(5): 會跑 0 到 4，for i in range(2, 8): 會跑 2 到 7，for i in range
+            (10, 0, -2): 會跑 10、8、6、4、2。                
+                    <div class="in" style="background-color: #765285;"><p><code>for i in range(3):<br>&nbsp;&nbsp;&nbsp;print(i)</code></p></div>
+            </div>
+        </div>
+        <div class="tooltip-wrap">
+            <button class="syntax-btn" aria-describedby="tip-if">
+                for
+            </button>
+            <div class="tooltip-box" id="tip-if" role="tooltip">
+            break 是 Python 裡用來「立刻跳出整個迴圈」的關鍵詞，只要是 for 或 while 迴圈，當執行到 break，就會直接結束整個迴圈，不再繼續執行剩下的次數或條件。                
+            <div class="in" style="background-color: #765285;"><p><code>
+            nums = [1, 3, 5, 7]
+            target = 4<br>
+
+            for n in nums:<br>
+                &nbsp;&nbsp;&nbsp;if n == target:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("找到目標")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br>
+                &nbsp;&nbsp;&nbsp;else:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("沒有找到目標")<br>
+            </code></p></div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--載入動畫-->
+    <div class="curtain" id="curtain">
+        <p class="curtain-text">載入中...</p>
+    </div>
+    <script>
+        window.addEventListener("load" , function(){
+            const curtain = document.getElementById("curtain");/*尋找布幕*/
+            curtain.classList.add("hide");/*hide觸發往上拉動畫*/curtain
+        })
+    </script>
+</body>
+</html>
